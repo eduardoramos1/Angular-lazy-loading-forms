@@ -10,11 +10,10 @@
     />
     <!-- (ngIf aqui)se houver erro, devolve true, se não, false -->
     <!-- A "?" no ngIf significa que é um objeto que pode ou não existir, caso não exista, ele não vai explodir a tela com errors -->
-    <small
+    <ap-vmessage
       *ngIf="loginForm.get('userName').errors?.required"
-      class="text-danger d-block mt-2"
-      >Nome de usuario é necessário</small
-    >
+      text="Nome de usuário é requerido!"
+    ></ap-vmessage>
   </div>
 
   <div class="form-group">
@@ -24,11 +23,10 @@
       class="form-control"
       placeholder="password"
     />
-    <small
+    <ap-vmessage
       *ngIf="loginForm.get('password').errors?.required"
-      class="text-danger d-block mt-2"
-      >Senha é necessária</small
-    >
+      text="Senha é necessária"
+    ></ap-vmessage>
   </div>
 
   <!-- desabilita o botão login caso o loginForm não esteja corretamente preenchido  -->
