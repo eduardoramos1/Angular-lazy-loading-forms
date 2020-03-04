@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthService } from "src/app/core/auth.service";
+import { AuthService } from "src/app/core/auth/auth.service";
 import { Router } from "@angular/router";
+import { PlatformDetectorService } from "src/app/core/platform-detector/platform-detector.service";
 
 @Component({
   templateUrl: "./signin.component.html"
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private platformDetectorService: PlatformDetectorService
   ) {}
 
   ngOnInit(): void {
@@ -39,8 +41,12 @@ export class SignInComponent implements OnInit {
         console.log(err);
         alert("Nome de usuário ou senha inválidos");
 
-        // faz com que o elemento userNameInput receba foco
-        this.userNameInput.nativeElement.focus();
+        // verifica a plataforma que o cliente ta usando, se for smartphone, o foco não acontece
+        if (this.platformDetectorService.checkPlatformBrowser()) {
+          // faz com que o elemento userNameInput receba foco
+          this.userNameInput.nativeElement.focus();
+        }
+
         // reseta todos os valores do formulario
         this.loginForm.reset();
       }
