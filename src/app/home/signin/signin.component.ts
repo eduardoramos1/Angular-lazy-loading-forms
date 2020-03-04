@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "src/app/core/auth.service";
 import { Router } from "@angular/router";
@@ -8,6 +8,9 @@ import { Router } from "@angular/router";
 })
 export class SignInComponent implements OnInit {
   loginForm: FormGroup;
+
+  // permite acesso a um elemento do DOM, sem acessá-lo diretamente, como se fosse ao usar $() ou document.querySelector()
+  @ViewChild("userNameInput") userNameInput: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -35,6 +38,9 @@ export class SignInComponent implements OnInit {
       err => {
         console.log(err);
         alert("Nome de usuário ou senha inválidos");
+
+        // faz com que o elemento userNameInput receba foco
+        this.userNameInput.nativeElement.focus();
         // reseta todos os valores do formulario
         this.loginForm.reset();
       }
