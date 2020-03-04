@@ -35,4 +35,9 @@ export class UserService {
     // gera uma mensagem para todos que estiverem inscritos no subject com subscribe
     this.userSubject.next(user);
   }
+
+  logout() {
+    this.tokenService.removeToken();
+    this.userSubject.next(null);
+  }
 }

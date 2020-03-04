@@ -6,6 +6,7 @@
       <i class="fa fa-user-circle"></i>
       <!-- user pode ou não existir quando o formulário for iniciado, por isso o '?' -->
       <a class="ml-2">{{ user?.name }}</a>
+      <a (click)="logout()"> (logout)</a>
     </div>
 
     <ng-template #login>
