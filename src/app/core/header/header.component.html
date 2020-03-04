@@ -1,10 +1,17 @@
 <header class="fixed-top">
   <nav class="navbar navbar-light bg-white">
     <a class="navbar-brand">ALURAPIC</a>
-    <div>
+    <!-- pipe async espera o valor de observable -->
+    <div *ngIf="user$ | async as user; else login">
       <i class="fa fa-user-circle"></i>
       <!-- user pode ou não existir quando o formulário for iniciado, por isso o '?' -->
       <a class="ml-2">{{ user?.name }}</a>
     </div>
+
+    <ng-template #login>
+      <span class="navbar-text">
+        Por favor faça o login
+      </span>
+    </ng-template>
   </nav>
 </header>

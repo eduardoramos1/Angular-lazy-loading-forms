@@ -15,7 +15,7 @@ export class UserService {
 
   constructor(private tokenService: TokenService) {
     //   se existir token, chame o decodeAndNotify ao carregar o serviço
-    this.tokenService.hasToken && this.decodeAndNotify();
+    this.tokenService.hasToken() && this.decodeAndNotify();
   }
 
   setToken(token: string) {
@@ -32,7 +32,7 @@ export class UserService {
     // jwt_decode vai decodificar o token e retornar um objeto
     // quando terminar de fazer o decode, passa as informações para o tipo User
     const user = jwt_decode(token) as User;
-    // gera uma mensagem para todos que estiverem escritos no subject com subscribe
+    // gera uma mensagem para todos que estiverem inscritos no subject com subscribe
     this.userSubject.next(user);
   }
 }
