@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 // permite ser usado em um pipe para pegar algum tipo de informação da requisiçao
 import { tap } from "rxjs/operators";
 
-import { TokenService } from "../token/token.service";
+import { UserService } from "../user/user.service";
 
 const API_URL = "http://localhost:3000";
 
@@ -12,7 +12,7 @@ const API_URL = "http://localhost:3000";
   providedIn: "root"
 })
 export class AuthService {
-  constructor(private http: HttpClient, private tokenService: TokenService) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   authenticate(userName: string, password: string) {
     return this.http
@@ -28,7 +28,7 @@ export class AuthService {
       .pipe(
         tap(res => {
           const authToken = res.headers.get("x-access-token");
-          this.tokenService.setToken(authToken);
+          this.userService.setToken(authToken);
           console.log(authToken);
         })
       );
