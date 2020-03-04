@@ -1,42 +1,23 @@
 <h4 class="text-center">Login</h4>
 
-<form class="form mt-4" [formGroup]="loginForm">
-  <div class="form-group">
-    <input
-      class="form-control"
-      formControlName="userName"
-      placeholder="user name"
-      autofocus
-    />
-    <!-- (ngIf aqui)se houver erro, devolve true, se não, false -->
-    <!-- A "?" no ngIf significa que é um objeto que pode ou não existir, caso não exista, ele não vai explodir a tela com errors -->
-    <ap-vmessage
-      *ngIf="loginForm.get('userName').errors?.required"
-      text="Nome de usuário é requerido!"
-    ></ap-vmessage>
-  </div>
+<form class="form mt-4" [formGroup]="loginForm" (submit)="login()">
+	<div class="form-group">
+		<input class="form-control" formControlName="userName" placeholder="user name" autofocus />
+		<!-- (ngIf aqui)se houver erro, devolve true, se não, false -->
+		<!-- A "?" no ngIf significa que é um objeto que pode ou não existir, caso não exista, ele não vai explodir a tela com errors -->
+		<ap-vmessage *ngIf="loginForm.get('userName').errors?.required" text="Nome de usuário é requerido!">
+		</ap-vmessage>
+	</div>
 
-  <div class="form-group">
-    <input
-      type="password"
-      formControlName="password"
-      class="form-control"
-      placeholder="password"
-    />
-    <ap-vmessage
-      *ngIf="loginForm.get('password').errors?.required"
-      text="Senha é necessária"
-    ></ap-vmessage>
-  </div>
+	<div class="form-group">
+		<input type="password" formControlName="password" class="form-control" placeholder="password" />
+		<ap-vmessage *ngIf="loginForm.get('password').errors?.required" text="Senha é necessária"></ap-vmessage>
+	</div>
 
-  <!-- desabilita o botão login caso o loginForm não esteja corretamente preenchido  -->
-  <button
-    [disabled]="loginForm.invalid"
-    type="submit"
-    class="btn btn-primary btn-block"
-  >
-    login
-  </button>
+	<!-- desabilita o botão login caso o loginForm não esteja corretamente preenchido  -->
+	<button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-block">
+		login
+	</button>
 </form>
 
 <p>Not a user?<a>Register now</a></p>
