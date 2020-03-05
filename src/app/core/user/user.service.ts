@@ -12,6 +12,7 @@ export class UserService {
   // behaviour subject emite logo de cara algum valor
   // se ninguém ouvir o valor emitido, ele vai manter este valor, permitindo que algum componente que seja renderizado depois deste serviço por exemplo consiga ter acesso a informação
   private userSubject = new BehaviorSubject<User>(null);
+  private userName: string;
 
   constructor(private tokenService: TokenService) {
     //   se existir token, chame o decodeAndNotify ao carregar o serviço
@@ -32,6 +33,7 @@ export class UserService {
     // jwt_decode vai decodificar o token e retornar um objeto
     // quando terminar de fazer o decode, passa as informações para o tipo User
     const user = jwt_decode(token) as User;
+    this.userName = user.name;
     // gera uma mensagem para todos que estiverem inscritos no subject com subscribe
     this.userSubject.next(user);
   }
@@ -39,5 +41,13 @@ export class UserService {
   logout() {
     this.tokenService.removeToken();
     this.userSubject.next(null);
+  }
+
+  igLogged() {
+    return this.tokenService.hasToken();
+  }
+
+  getUserName() {
+    return this.userName;
   }
 }
