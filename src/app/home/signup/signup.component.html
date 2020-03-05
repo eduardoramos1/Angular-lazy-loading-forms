@@ -1,0 +1,97 @@
+<h4 class="text-center">Cadastre-se!</h4>
+
+<form class="form mt-4" [formGroup]="signUpForm">
+  <div class="form-group">
+    <input
+      formControlName="email"
+      placeholder="email"
+      class="form-control"
+      autofocus
+    />
+    <ap-vmessage
+      *ngIf="signUpForm.get('email').errors?.required"
+      text="Email requerido"
+    ></ap-vmessage>
+    <ap-vmessage
+      *ngIf="signUpForm.get('email').errors?.email"
+      text="Email inválido"
+    ></ap-vmessage>
+  </div>
+
+  <div class="form-group">
+    <input
+      formControlName="fullName"
+      placeholder="full name"
+      class="form-control"
+    />
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('fullName').errors?.required"
+      text="Nome requerido"
+    ></ap-vmessage>
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('fullName').errors?.minlength"
+      text="Nome precisa de no mínimo 2 cáracteres"
+    ></ap-vmessage>
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('fullName').errors?.maxlength"
+      text="Tamanho máximo é de 40 cáracteres"
+    ></ap-vmessage>
+  </div>
+
+  <div class="form-group">
+    <input
+      formControlName="userName"
+      placeholder="user name"
+      class="form-control"
+    />
+    <ap-vmessage
+      *ngIf="signUpForm.get('userName').errors?.required"
+      text="Usuário requerido"
+    ></ap-vmessage>
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('userName').errors?.minlength"
+      text="Nome precisa de no mínimo 2 cáracteres"
+    ></ap-vmessage>
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('userName').errors?.maxlength"
+      text="Tamanho máximo é de 30 cáracteres"
+    ></ap-vmessage>
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('userName').errors?.pattern"
+      text="Deve estar em letras minúsculas"
+    ></ap-vmessage>
+  </div>
+
+  <div class="form-group">
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="password"
+      class="form-control"
+    />
+    <ap-vmessage
+      *ngIf="signUpForm.get('password').errors?.required"
+      text="Senha requerida"
+    ></ap-vmessage>
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('password').errors?.minlength"
+      text="Precisa de pelo menos 4 carácteres"
+    ></ap-vmessage>
+
+    <ap-vmessage
+      *ngIf="signUpForm.get('password').errors?.maxlength"
+      text="Máximo de 18 carácteres"
+    ></ap-vmessage>
+  </div>
+
+  <button class="btn btn-primary btn-block">Register</button>
+
+  <p>Já é um usuário? <a [routerLink]="['']">Logue!</a></p>
+</form>
