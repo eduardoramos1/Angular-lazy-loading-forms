@@ -63,7 +63,7 @@
     ></ap-vmessage>
 
     <ap-vmessage
-      *ngIf="signUpForm.get('userName').errors?.pattern"
+      *ngIf="signUpForm.get('userName').errors?.lowerCase"
       text="Deve estar em letras minúsculas"
     ></ap-vmessage>
   </div>
