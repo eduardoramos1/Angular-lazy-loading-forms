@@ -7,6 +7,7 @@ import { RouterModule } from "@angular/router";
 import { SignUpComponent } from "./signup/signup.component";
 import { HomeComponent } from "./home.component";
 import { HomeRoutingModule } from "./home.routing.module";
+import { SignUpService } from "./signup/signup.service";
 
 @NgModule({
 	declarations: [SignInComponent, SignUpComponent, HomeComponent],
@@ -17,6 +18,8 @@ import { HomeRoutingModule } from "./home.routing.module";
 		VMessageModule,
 		RouterModule,
 		HomeRoutingModule
-	]
+	],
+	// se algum componente precisar de SignUpService, o provider fornecerá o serviço, serve para limitar a visibilidade do serviço na app
+	providers: [SignUpService]
 })
 export class HomeModule {}

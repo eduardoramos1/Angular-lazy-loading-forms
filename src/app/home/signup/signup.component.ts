@@ -8,7 +8,9 @@ import { Router } from "@angular/router";
 import { PlatformDetectorService } from "src/app/core/platform-detector/platform-detector.service";
 
 @Component({
-	templateUrl: "./signup.component.html"
+	templateUrl: "./signup.component.html",
+	// provedor de serviço para o componente, quero que o UserNotTakenValidator fique visivel somente para este componente
+	providers: [UserNotTakenValidatorService]
 })
 export class SignUpComponent implements OnInit {
 	signUpForm: FormGroup;
@@ -56,8 +58,8 @@ export class SignUpComponent implements OnInit {
 			]
 		});
 
-		if(this.platformDetectorService.checkPlatformBrowser()) {
-			this.inputEmail.nativeElement.focus()
+		if (this.platformDetectorService.checkPlatformBrowser()) {
+			this.inputEmail.nativeElement.focus();
 		}
 	}
 
