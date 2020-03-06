@@ -5,40 +5,39 @@ import { PhotoListComponent } from "./photos/photo-list/photo-list.component";
 import { PhotoFormComponent } from "./photos/photo-form/photo-form.component";
 import { NotFoundComponent } from "./errors/not-found/not-found.component";
 import { PhotoListResolver } from "./photos/photo-list/photo-list.resolver";
-import { SignInComponent } from "./home/signin/signin.component";
-import { AuthGuard } from "./core/auth/auth.guard";
-import { SignUpComponent } from "./home/signup/signup.component";
 
 // A ideia do canActivate é permitir usar uma guarda de rota, se ele não passar nas condições do guard a rota não é ativada
 const routes: Routes = [
-  {
-    path: "",
-    component: SignInComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: "signup",
-    component: SignUpComponent
-  },
-  {
-    path: "user/:userName",
-    component: PhotoListComponent,
-    resolve: {
-      photos: PhotoListResolver
-    }
-  },
-  {
-    path: "p/add",
-    component: PhotoFormComponent
-  },
-  {
-    path: "**",
-    component: NotFoundComponent
-  }
+	// verifica se a rota é exatamente a definida, se for redireciona para home
+	{
+		path: "",
+		pathMatch: "full",
+		redirectTo: "home"
+	},
+	{
+		path: "home",
+		// carrega o modulo para ser usado no lazy loading
+		loadChildren: "./home/home.module#HomeModule"
+	},
+	{
+		path: "user/:userName",
+		component: PhotoListComponent,
+		resolve: {
+			photos: PhotoListResolver
+		}
+	},
+	{
+		path: "p/add",
+		component: PhotoFormComponent
+	},
+	{
+		path: "**",
+		component: NotFoundComponent
+	}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes, { useHash: true })],
+	exports: [RouterModule]
 })
 export class AppRoutingModule {}
