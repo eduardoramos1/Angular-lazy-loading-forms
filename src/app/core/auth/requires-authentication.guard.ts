@@ -1,14 +1,9 @@
-import { Injectable } from "@angular/core";
-import { UserService } from "../user/user.service";
-import {
-	CanActivate,
-	ActivatedRouteSnapshot,
-	RouterStateSnapshot,
-	Router
-} from "@angular/router";
-import { Observable } from "rxjs";
+import { Injectable } from '@angular/core'
+import { UserService } from '../user/user.service'
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router'
+import { Observable } from 'rxjs'
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 // Interface CanActivate permite  usar proteção de rota, neste algoritmo, caso o usuário esteja logado ele é redirecionado para outr página
 // Caso CanActive retorne true, a rota protegida poderá ser acessada, caso false a rota não será renderizada
 export class RequiresAuthenticationGuard implements CanActivate {
@@ -19,9 +14,9 @@ export class RequiresAuthenticationGuard implements CanActivate {
 		state: RouterStateSnapshot
 	): boolean | Observable<boolean> | Promise<boolean> {
 		if (!this.userService.igLogged()) {
-			this.router.navigate([""]);
-			return false;
+			this.router.navigate([''])
+			return false
 		}
-		return true;
+		return true
 	}
 }
