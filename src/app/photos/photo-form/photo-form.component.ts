@@ -40,9 +40,9 @@ export class PhotoFormComponent implements OnInit {
 		this.file = file;
 		// fazer o tratamento do previewImage
 		const reader = new FileReader();
+		reader.readAsDataURL(file);
 		// quando termina a conversão do arquivo para base64, ele joga a imagem na variavel previewImage
 		reader.onload = (event: any) =>
 			(this.previewImage = event.target.result);
-		reader.readAsDataURL(file);
 	}
 }

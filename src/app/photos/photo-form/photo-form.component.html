@@ -15,7 +15,7 @@
 					formControlName="file"
 					type="file"
 					accept="image/*"
-					(change)="handleFile($event.target.files[0])"
+					(change)="handleFile((file = $event.target.files[0]))"
 				/>
 				<ap-vmessage
 					text="Por favor seleciona uma foto"
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 
-		<ng-template #showPreviewe>
+		<ng-template #showPreview>
 			<div class="text-center">
 				<ap-photo [url]="previewImage" title="Preview"></ap-photo>
 			</div>
