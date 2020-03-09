@@ -12,22 +12,20 @@ import { SearchComponent } from "./photo-list/search/search.component";
 import { DarkenOnHoverModule } from "../shared/directives/dark-on-hover/dark-on-hover.module";
 import { PhotoFormModule } from "./photo-form/photo-form.module";
 import { PhotoModule } from "./photo/photo.module";
+import { PhotoDetailsModule } from "./photos-details/photo-details.module";
+import { PhotoListModule } from "./photo-list/photo-list.module";
 
 @NgModule({
-	declarations: [
-		PhotoListComponent,
-		PhotosComponent,
-		FilterByDescription,
-		LoadButtonComponent,
-		SearchComponent
-	],
+	declarations: [],
 	imports: [
 		HttpClientModule,
 		CommonModule,
 		CardModule,
 		DarkenOnHoverModule,
 		PhotoFormModule,
-		PhotoModule
+		PhotoModule,
+		PhotoDetailsModule,
+		PhotoListModule
 	]
 })
 export class PhotosModule {}
