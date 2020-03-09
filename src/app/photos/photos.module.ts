@@ -11,10 +11,10 @@ import { CardModule } from "../shared/components/card/card.module";
 import { SearchComponent } from "./photo-list/search/search.component";
 import { DarkenOnHoverModule } from "../shared/directives/dark-on-hover/dark-on-hover.module";
 import { PhotoFormModule } from "./photo-form/photo-form.module";
+import { PhotoModule } from "./photo/photo.module";
 
 @NgModule({
 	declarations: [
-		PhotoComponent,
 		PhotoListComponent,
 		PhotosComponent,
 		FilterByDescription,
@@ -26,7 +26,8 @@ import { PhotoFormModule } from "./photo-form/photo-form.module";
 		CommonModule,
 		CardModule,
 		DarkenOnHoverModule,
-		PhotoFormModule
+		PhotoFormModule,
+		PhotoModule
 	]
 })
 export class PhotosModule {}

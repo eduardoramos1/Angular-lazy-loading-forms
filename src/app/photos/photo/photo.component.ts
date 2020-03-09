@@ -13,7 +13,7 @@ export class PhotoComponent {
 
 	// Em angular eu posso aplicar uma inbounding property para um set, e então aplicar algum tipo de lógica nele.
 	@Input() set url(url: string) {
-		// se a url começar com "data", _url recebe concatenação de cloud + url
+		// se a url começar com "data", _url recebe concatenação de cloud + url, fazendo assim carregar a imagem corretament
 		if (!url.startsWith("data")) {
 			this._url = cloud + url;
 		} else {
