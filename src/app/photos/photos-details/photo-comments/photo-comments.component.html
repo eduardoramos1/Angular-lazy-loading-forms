@@ -13,15 +13,19 @@
         </li>
     </ul>
     <div class="mt-4">
-        <form>
+        <form [formGroup]="commentForm"> 
             <div class="input-group">
-                <textarea class="form-control"></textarea>
+                <textarea formControlName='comment' class="form-control"></textarea>
                 <div class="input-group-append">
-                    <button class="btn btn-primary pull-left">
+                    <button [disabled]="commentForm.invalid" class="btn btn-primary pull-left">
                         Publicar
                     </button>
                 </div>
             </div>
+            <ap-vmessage
+                text="Máximo de carácteres é de 300"
+                *ngIf="commentForm.get('comment').errors?.maxlength"
+            ></ap-vmessage>
         </form>
     </div>
 <div>
