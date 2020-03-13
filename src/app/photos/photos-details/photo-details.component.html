@@ -10,6 +10,13 @@
 		<div class="col-lg-4 p-4">
 			<small>
 				<p class="text-left break-word">{{ photo.description }}</p>
+				<div class="text-left mb-4">
+					<i class="fa fa-comment-o fa-2x mr-2 ml-2"></i> {{ photo.comments }}
+					<a class="btn  pull-right">
+						<i photoOwnerOnly [ownedPhoto]="photo" (click)="removePhoto()" class="fa fa-trash-o fa-2x"></i>
+					</a>
+					
+				</div>
 				<hr />
 			</small>
 			<ap-photo-comments [photoId]="photoId"
