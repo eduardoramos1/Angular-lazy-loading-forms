@@ -12,8 +12,12 @@
 				<p class="text-left break-word">{{ photo.description }}</p>
 				<hr />
 			</small>
-			<ap-photo-comments [photoId]="photoId"></ap-photo-comments>
-			
+			<ap-photo-comments [photoId]="photoId"
+				*ngIf="photo.allowComments; else warning"
+			></ap-photo-comments>
+			<ng-template #warning>
+				<p>Usuário não permite comentários nesta foto</p>
+			</ng-template>
 		</div>
 	</div>
 </div>
